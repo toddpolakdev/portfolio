@@ -1,0 +1,38 @@
+import React from "react";
+import styles from "./Hero.module.css";
+import Button from "../Button/Button";
+
+type HeroProps = {
+  title: string;
+  subtitle: string;
+  description: string;
+};
+
+const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
+  return (
+    <section className={styles.hero}>
+      <div className={styles.floating_elements}>
+        <div className={styles.floating_element}></div>
+        <div className={styles.floating_element}></div>
+        <div className={styles.floating_element}></div>
+      </div>
+      <div className={styles.container}>
+        <div className={styles.hero_content}>
+          <h1>{title}</h1>
+          <p className={styles.subtitle}>{subtitle}</p>
+          <p className={styles.description}>{description}</p>
+          <div className={styles.cta_buttons}>
+            <Button href="#" variant="primary">
+              View My Work
+            </Button>
+            <Button href="#" variant="secondary">
+              Get In Touch
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;

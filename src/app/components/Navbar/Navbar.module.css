@@ -1,0 +1,46 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.nav_links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav_links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav_links a:hover {
+  color: #ffd700;
+}
+
+.nav_links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #ffd700;
+  transition: width 0.3s ease;
+}
+
+.nav_links a:hover::after {
+  width: 100%;
+}
