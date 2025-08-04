@@ -20,3 +20,5 @@ export type Section = {
   skills?: SkillCategory[];
   experience?: JobEntry[];
 };
+
+export type SectionType = "about" | "skills" | "experience" | "education";

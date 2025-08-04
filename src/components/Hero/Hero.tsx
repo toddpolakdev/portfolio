@@ -11,12 +11,12 @@ type HeroProps = {
 const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
   return (
     <section className={styles.hero}>
-      <div className={styles.floating_elements}>
-        <div className={styles.floating_element}></div>
-        <div className={styles.floating_element}></div>
-        <div className={styles.floating_element}></div>
+      <div className="floatingElements">
+        <div className="floatingElement"></div>
+        <div className="floatingElement"></div>
+        <div className="floatingElement"></div>
       </div>
-      <div className={styles.container}>
+      <div className="container">
         <div className={styles.hero_content}>
           <h1>{title}</h1>
           <p className={styles.subtitle}>{subtitle}</p>
