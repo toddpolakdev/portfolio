@@ -18,6 +18,12 @@ export const GET_SECTIONS = gql`
         duration
         description
       }
+      education {
+        degree
+        institution
+        duration
+        description
+      }
     }
   }
 `;

@@ -3,7 +3,7 @@ import styles from "./Skills.module.css";
 import clsx from "clsx";
 
 type SkillCategory = {
-  __typename: string;
+  // __typename: string;
   category: string;
   tags: string[];
 };
