@@ -65,3 +65,13 @@
   resize: vertical;
   min-height: 120px;
 }
+
+.successMessage {
+  color: green;
+}
+
+@media (max-width: 768px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+}

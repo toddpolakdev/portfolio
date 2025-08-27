@@ -44,3 +44,13 @@
 .nav_links a:hover::after {
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .nav {
+    display: block;
+  }
+
+  .nav_links {
+    gap: 0.5rem;
+  }
+}

@@ -14,12 +14,12 @@ const About: React.FC<Props> = ({ title, content }) => (
       <h2 className="sectionTitle fade-in">{title}</h2>
       <div className={clsx(styles.aboutGrid, "fade-in")}>
         <div className={styles.aboutImage}>
-          {/* <Image
-            src="/images/web-dev.png"
+          <Image
+            src="/images/myphoto.png"
             alt="Web Dev"
-            width={500}
+            width={300}
             height={300}
-          /> */}
+          />
         </div>
         <div className={styles.aboutText}>
           {content?.map((graph, index) => (

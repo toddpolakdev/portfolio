@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-.hero_content {
+.heroContent {
   z-index: 2;
   max-width: 800px;
   margin: 0 auto;
@@ -40,7 +40,7 @@
   margin-right: auto;
 }
 
-.cta_buttons {
+.ctaButtons {
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -55,5 +55,15 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero .subtitle {
+    font-size: 1.2rem;
   }
 }

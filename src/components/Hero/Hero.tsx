@@ -17,11 +17,11 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
         <div className="floatingElement"></div>
       </div>
       <div className="container">
-        <div className={styles.hero_content}>
+        <div className={styles.heroContent}>
           <h1>{title}</h1>
           <p className={styles.subtitle}>{subtitle}</p>
           <p className={styles.description}>{description}</p>
-          <div className={styles.cta_buttons}>
+          <div className={styles.ctaButtons}>
             <Button href="#" variant="primary">
               View My Work
             </Button>

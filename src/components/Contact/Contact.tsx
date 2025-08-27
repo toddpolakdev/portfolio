@@ -12,7 +12,9 @@ const Contact: React.FC = () => {
     message: "",
   });
 
-  const [submitContact, { loading, error, data }] = useMutation(SUBMIT_CONTACT);
+  const [submitted, setSubmitted] = useState(false);
+
+  const [submitContact, { loading, error }] = useMutation(SUBMIT_CONTACT);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,8 +27,8 @@ const Contact: React.FC = () => {
 
     try {
       await submitContact({ variables: formData });
-      alert("Message sent successfully!");
       setFormData({ name: "", email: "", subject: "", message: "" });
+      setSubmitted(true);
     } catch (err) {
       console.error(err);
     }
@@ -77,66 +79,73 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className={styles.contactForm}>
-            <form onSubmit={handleSubmit}>
-              <div className={styles.formGroup}>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  autoComplete="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  autoComplete="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="subject">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  autoComplete="off"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  autoComplete="off"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btnPrimary"
-                style={{ width: "100%" }}
-                disabled={loading}>
-                {loading ? "Sending..." : "Send Message"}
-              </button>
-              {error && <p style={{ color: "red" }}>Error sending message.</p>}
-              {data && <p style={{ color: "green" }}>Message sent!</p>}
-            </form>
-          </div>
+          {submitted ? (
+            <p className={styles.successMessage}>
+              ✅ Thank you for reaching out! I’ll get back to you soon.
+            </p>
+          ) : (
+            <div className={styles.contactForm}>
+              <form onSubmit={handleSubmit}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    autoComplete="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autoComplete="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="subject">Subject</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    autoComplete="off"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    autoComplete="off"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn btnPrimary"
+                  style={{ width: "100%" }}
+                  disabled={loading}>
+                  {loading ? "Sending..." : "Send Message"}
+                </button>
+                {error && (
+                  <p style={{ color: "red" }}>Error sending message.</p>
+                )}
+              </form>
+            </div>
+          )}
         </div>
       </div>
     </section>

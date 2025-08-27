@@ -1,0 +1,31 @@
+.footer {
+  background-color: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+
+.footerLogos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ddd;
+  margin: 1.5rem 0;
+}
+
+.copy,
+.info {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.info {
+  padding: 0 0 2rem;
+}

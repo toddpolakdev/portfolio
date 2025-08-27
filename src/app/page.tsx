@@ -8,16 +8,16 @@ import Skills from "@/components/Skills/Skills";
 import Experience from "@/components/Experience/Experience";
 import Education from "@/components/Education/Education";
 import Contact from "@/components/Contact/Contact";
+import Footer from "@/components/Footer/Footer";
 import Loader from "@/components/Loader";
 import { useQuery } from "@apollo/client";
 import type { Section } from "@/types/types";
 import { GET_SECTIONS } from "@/queries/getSections";
 
 export default function Home() {
-  const { data, loading, error } = useQuery(GET_SECTIONS);
+  const { data, loading } = useQuery(GET_SECTIONS);
 
   if (loading) return <Loader />;
-  // if (error || !data?.sections) return <p>Error loading sections.</p>;
 
   const heroSection = data?.sections.find(
     (section: Section) => section.id === "hero"
@@ -59,6 +59,7 @@ export default function Home() {
           education={educationSection?.education}
         />
         <Contact />
+        <Footer />
       </Main>
     </>
   );
