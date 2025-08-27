@@ -17,25 +17,25 @@ export default function Home() {
   const { data, loading, error } = useQuery(GET_SECTIONS);
 
   if (loading) return <Loader />;
-  if (error || !data?.sections) return <p>Error loading sections.</p>;
+  // if (error || !data?.sections) return <p>Error loading sections.</p>;
 
-  const heroSection = data.sections.find(
+  const heroSection = data?.sections.find(
     (section: Section) => section.id === "hero"
   );
 
-  const aboutSection = data.sections.find(
+  const aboutSection = data?.sections.find(
     (section: Section) => section.id === "about"
   );
 
-  const skillsSection = data.sections.find(
+  const skillsSection = data?.sections.find(
     (section: Section) => section.id === "skills"
   );
 
-  const experienceSection = data.sections.find(
+  const experienceSection = data?.sections.find(
     (section: Section) => section.id === "experience"
   );
 
-  const educationSection = data.sections.find(
+  const educationSection = data?.sections.find(
     (section: Section) => section.id === "education"
   );
 
@@ -44,19 +44,19 @@ export default function Home() {
       <Header />
       <Main>
         <Hero
-          title={heroSection.title}
-          subtitle={heroSection.subtitle}
-          description={heroSection.description}
+          title={heroSection?.title}
+          subtitle={heroSection?.subtitle}
+          description={heroSection?.description}
         />
-        <About title={aboutSection.title} content={aboutSection.content} />
-        <Skills title={skillsSection.title} skills={skillsSection.skills} />
+        <About title={aboutSection?.title} content={aboutSection?.content} />
+        <Skills title={skillsSection?.title} skills={skillsSection?.skills} />
         <Experience
-          title={experienceSection.title}
-          experience={experienceSection.experience}
+          title={experienceSection?.title}
+          experience={experienceSection?.experience}
         />
         <Education
-          title={educationSection.title}
-          education={educationSection.education}
+          title={educationSection?.title}
+          education={educationSection?.education}
         />
         <Contact />
       </Main>

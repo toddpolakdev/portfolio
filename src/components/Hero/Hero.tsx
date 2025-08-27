@@ -25,7 +25,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
             <Button href="#" variant="primary">
               View My Work
             </Button>
-            <Button href="#" variant="secondary">
+            <Button href="#contact" variant="secondary">
               Get In Touch
             </Button>
           </div>

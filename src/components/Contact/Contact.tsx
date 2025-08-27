@@ -85,6 +85,7 @@ const Contact: React.FC = () => {
                   type="text"
                   id="name"
                   name="name"
+                  autoComplete="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -96,6 +97,7 @@ const Contact: React.FC = () => {
                   type="email"
                   id="email"
                   name="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -107,6 +109,7 @@ const Contact: React.FC = () => {
                   type="text"
                   id="subject"
                   name="subject"
+                  autoComplete="off"
                   value={formData.subject}
                   onChange={handleChange}
                   required
@@ -117,6 +120,7 @@ const Contact: React.FC = () => {
                 <textarea
                   id="message"
                   name="message"
+                  autoComplete="off"
                   value={formData.message}
                   onChange={handleChange}
                   required

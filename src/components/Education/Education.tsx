@@ -20,7 +20,7 @@ const Education: React.FC<Props> = ({ title, education }) => {
       <div className="container">
         <h2 className="sectionTitle fade-in">{title}</h2>
         <div className={clsx(styles.educationTimeline, "fade-in")}>
-          {education.map((educationItem, educationIndex) => (
+          {education?.map((educationItem, educationIndex) => (
             <div key={educationIndex} className={styles.educationItem}>
               <div className={styles.educationHeader}>
                 <div className={styles.degree}>{educationItem.degree}</div>

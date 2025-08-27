@@ -20,7 +20,7 @@ const Experience: React.FC<Props> = ({ title, experience }) => {
       <div className="container">
         <h2 className="sectionTitle fade-in">{title}</h2>
         <div className={clsx(styles.experienceTimeline, "fade-in")}>
-          {experience.map((experienceItem, experienceIndex) => (
+          {experience?.map((experienceItem, experienceIndex) => (
             <div key={experienceIndex} className={styles.experienceItem}>
               <div className={styles.experienceHeader}>
                 <div className={styles.jobTitle}>{experienceItem.title}</div>

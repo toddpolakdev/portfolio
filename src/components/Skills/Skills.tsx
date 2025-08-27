@@ -19,7 +19,7 @@ const Skills: React.FC<Props> = ({ title, skills }) => {
       <div className="container">
         <h2 className="sectionTitle fade-in">{title}</h2>
         <div className={clsx(styles.skillsGrid, "fade-in")}>
-          {skills.map((skill, skillIndex) => (
+          {skills?.map((skill, skillIndex) => (
             <div key={skillIndex} className={styles.skillCategory}>
               <h3>{skill.category}</h3>
               <div className={styles.skillTags}>

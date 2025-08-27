@@ -22,7 +22,7 @@ const About: React.FC<Props> = ({ title, content }) => (
           /> */}
         </div>
         <div className={styles.aboutText}>
-          {content.map((graph, index) => (
+          {content?.map((graph, index) => (
             <p key={index}>{graph}</p>
           ))}
         </div>
