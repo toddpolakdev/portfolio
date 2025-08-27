@@ -15,7 +15,7 @@ const About: React.FC<Props> = ({ title, content }) => (
       <div className={clsx(styles.aboutGrid, "fade-in")}>
         <div className={styles.aboutImage}>
           <Image
-            src="/images/myphoto.png"
+            src="/images/profile-photo.jpg"
             alt="Web Dev"
             width={300}
             height={300}
