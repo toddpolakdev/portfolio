@@ -45,7 +45,9 @@ const Contact: React.FC = () => {
               <div>
                 <strong>Email</strong>
                 <br />
-                <a href="mailto:toddpolakdev@gmail.com">
+                <a
+                  className={styles.contactLink}
+                  href="mailto:toddpolakdev@gmail.com">
                   toddpolakdev@gmail.com
                 </a>
               </div>
@@ -54,7 +56,9 @@ const Contact: React.FC = () => {
               <div>
                 <strong>Phone</strong>
                 <br />
-                <a href="tel:909.582.0448">909.582.0448</a>
+                <a className={styles.contactLink} href="tel:909.582.0448">
+                  909.582.0448
+                </a>
               </div>
             </div>
             <div className={styles.contactItem}>
@@ -62,6 +66,7 @@ const Contact: React.FC = () => {
                 <strong>LinkedIn</strong>
                 <br />
                 <a
+                  className={styles.contactLink}
                   href="https://linkedin.com/in/todd-polak-dev"
                   target="_blank">
                   linkedin.com/in/todd-polak-dev
@@ -72,7 +77,10 @@ const Contact: React.FC = () => {
               <div>
                 <strong>GitHub</strong>
                 <br />
-                <a href="https://github.com/toddpolakdev" target="_blank">
+                <a
+                  className={styles.contactLink}
+                  href="https://github.com/toddpolakdev"
+                  target="_blank">
                   github.com/toddpolakdev
                 </a>
               </div>

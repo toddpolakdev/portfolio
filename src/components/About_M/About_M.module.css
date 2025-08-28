@@ -1,0 +1,24 @@
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.aboutImage {
+  width: 400px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.aboutText {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}

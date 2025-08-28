@@ -1,6 +1,11 @@
 .contact {
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
   color: white;
+  padding-bottom: 2rem;
+}
+
+.contactLink {
+  color: #00d4ff;
 }
 
 .contactGrid {

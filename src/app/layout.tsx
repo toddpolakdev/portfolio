@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ApolloWrapper from "@/lib/ApolloWrapper";
 import FadeInObserver from "@/components/FadeInObserver";
+import ScrollAnimations from "@/components/ScrollAnimations/ScrollAnimations";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body>
         <ApolloWrapper>
           <FadeInObserver />
+          <ScrollAnimations />
           {children}
         </ApolloWrapper>
       </body>

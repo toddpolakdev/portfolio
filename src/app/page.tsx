@@ -2,11 +2,27 @@
 
 import Header from "@/components/Header/Header";
 import Main from "@/components/Main/Main";
+
 import Hero from "@/components/Hero/Hero";
+
+import Hero_M from "@/components/Hero_M/Hero_M";
+
 import About from "@/components/About/About";
+
+import About_M from "@/components/About_M/About_M";
+
 import Skills from "@/components/Skills/Skills";
+
+import Skills_M from "@/components/Skills_M/Skills_M";
+
 import Experience from "@/components/Experience/Experience";
+
+import Experience_M from "@/components/Experience_M";
+
 import Education from "@/components/Education/Education";
+
+import Education_M from "@/components/Education_M";
+
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
 import Loader from "@/components/Loader";
@@ -43,12 +59,12 @@ export default function Home() {
     <>
       <Header />
       <Main>
-        <Hero
+        <Hero_M
           title={heroSection?.title}
           subtitle={heroSection?.subtitle}
           description={heroSection?.description}
         />
-        <About title={aboutSection?.title} content={aboutSection?.content} />
+        <About_M title={aboutSection?.title} content={aboutSection?.content} />
         <Skills title={skillsSection?.title} skills={skillsSection?.skills} />
         <Experience
           title={experienceSection?.title}
