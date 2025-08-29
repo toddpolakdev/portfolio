@@ -10,7 +10,10 @@ export const GET_SECTIONS = gql`
       content
       skills {
         category
-        tags
+        tags {
+          name
+          url
+        }
       }
       experience {
         title

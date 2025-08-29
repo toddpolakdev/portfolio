@@ -2,10 +2,14 @@ import React from "react";
 import styles from "./Skills.module.css";
 import clsx from "clsx";
 
+type skillTag = {
+  name: string;
+  url: string;
+};
+
 type SkillCategory = {
-  // __typename: string;
   category: string;
-  tags: string[];
+  tags: skillTag[];
 };
 
 type Props = {
@@ -24,9 +28,11 @@ const Skills: React.FC<Props> = ({ title, skills }) => {
               <h3>{skill.category}</h3>
               <div className={styles.skillTags}>
                 {skill.tags.map((tag, tagIndex) => (
-                  <span key={tagIndex} className={styles.skillTag}>
-                    {tag}
-                  </span>
+                  <a key={tagIndex} href={tag.url} target="_blank">
+                    <span key={tagIndex} className={styles.skillTag}>
+                      {tag.name}
+                    </span>
+                  </a>
                 ))}
               </div>
             </div>

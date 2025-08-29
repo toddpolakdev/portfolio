@@ -13,11 +13,7 @@ import About_M from "@/components/About_M/About_M";
 
 import Skills from "@/components/Skills/Skills";
 
-import Skills_M from "@/components/Skills_M/Skills_M";
-
 import Experience from "@/components/Experience/Experience";
-
-import Experience_M from "@/components/Experience_M";
 
 import Education from "@/components/Education/Education";
 
@@ -31,7 +27,12 @@ import type { Section } from "@/types/types";
 import { GET_SECTIONS } from "@/queries/getSections";
 
 export default function Home() {
-  const { data, loading } = useQuery(GET_SECTIONS);
+  const { data, loading, error } = useQuery(GET_SECTIONS);
+
+  if (error) {
+    console.log("error: ", error);
+    return;
+  }
 
   if (loading) return <Loader />;
 

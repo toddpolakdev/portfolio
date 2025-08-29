@@ -5,11 +5,20 @@ import styles from "./Contact.module.css";
 import clsx from "clsx";
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
+  type ContactFormData = {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+    website?: string;
+  };
+
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     subject: "",
     message: "",
+    website: "",
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -23,6 +32,10 @@ const Contact: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    if (formData.website) {
+      return;
+    }
+
     e.preventDefault();
 
     try {
@@ -35,7 +48,8 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className={styles.contact}>
+    // <section id="contact" className={styles.contact}>
+    <section id="contact" className="section">
       <div className="container">
         <h2 className="sectionTitle fade-in">Contact Me</h2>
 
@@ -100,6 +114,7 @@ const Contact: React.FC = () => {
                     type="text"
                     id="name"
                     name="name"
+                    maxLength={50}
                     autoComplete="name"
                     value={formData.name}
                     onChange={handleChange}
@@ -124,6 +139,7 @@ const Contact: React.FC = () => {
                     type="text"
                     id="subject"
                     name="subject"
+                    maxLength={100}
                     autoComplete="off"
                     value={formData.subject}
                     onChange={handleChange}
@@ -135,6 +151,8 @@ const Contact: React.FC = () => {
                   <textarea
                     id="message"
                     name="message"
+                    maxLength={1000}
+                    rows={6}
                     autoComplete="off"
                     value={formData.message}
                     onChange={handleChange}
@@ -145,12 +163,19 @@ const Contact: React.FC = () => {
                   type="submit"
                   className="btn btnPrimary"
                   style={{ width: "100%" }}
-                  disabled={loading}>
+                  disabled={loading || submitted}>
                   {loading ? "Sending..." : "Send Message"}
                 </button>
                 {error && (
                   <p style={{ color: "red" }}>Error sending message.</p>
                 )}
+                <input
+                  type="text"
+                  name="website"
+                  style={{ display: "none" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
               </form>
             </div>
           )}

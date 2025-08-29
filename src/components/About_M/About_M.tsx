@@ -51,28 +51,14 @@ const About: React.FC<Props> = ({ title, content }) => {
     },
   };
 
-  const titleVariants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
   return (
     <section id="about" className="section">
       <div className="container">
         <motion.h2
           className="sectionTitle fade-in"
-          variants={titleVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            type: "spring",
-            stiffness: 100,
-            damping: 12,
-          }}>
+          viewport={{ once: true, amount: 0.3 }}>
           {title}
         </motion.h2>
 

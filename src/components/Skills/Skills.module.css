@@ -10,6 +10,12 @@
   padding: 2rem;
   border-radius: 15px;
   border-left: 4px solid #00d4ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skillCategory:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 212, 255, 0.15);
 }
 
 .skillCategory h3 {
@@ -31,4 +37,12 @@
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 500;
+  display: inline-block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+}
+
+.skillTag:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.7);
+  background: linear-gradient(45deg, #00e1ff, #00aaff);
 }
