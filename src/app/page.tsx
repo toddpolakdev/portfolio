@@ -2,23 +2,11 @@
 
 import Header from "@/components/Header/Header";
 import Main from "@/components/Main/Main";
-
-import Hero from "@/components/Hero/Hero";
-
 import Hero_M from "@/components/Hero_M/Hero_M";
-
-import About from "@/components/About/About";
-
 import About_M from "@/components/About_M/About_M";
-
 import Skills from "@/components/Skills/Skills";
-
 import Experience from "@/components/Experience/Experience";
-
 import Education from "@/components/Education/Education";
-
-import Education_M from "@/components/Education_M";
-
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
 import Loader from "@/components/Loader";
