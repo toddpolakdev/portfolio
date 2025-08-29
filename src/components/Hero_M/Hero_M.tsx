@@ -291,7 +291,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
               delay: 0.8,
               staggerChildren: 0.1,
             }}>
-            {/* <motion.div
+            <motion.div
               variants={buttonItemVariants}
               initial="hidden"
               animate="visible"
@@ -303,10 +303,10 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}>
-              <Button href="#" variant="primary">
+              <Button href="/projects" variant="primary">
                 View My Work
               </Button>
-            </motion.div> */}
+            </motion.div>
             <motion.div
               variants={buttonItemVariants}
               initial="hidden"
