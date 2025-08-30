@@ -25,6 +25,25 @@ export default function ProjectsPage() {
           <p>A scientific calculator built with React.</p>
           <span className={styles.link}>View Live Project →</span>
         </a>
+
+        <a
+          href="https://youtube-favorites-tawny.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.card}>
+          <div className={styles.thumbWrapper}>
+            {/* <Image
+              src=""
+              alt=""
+              className={styles.image}
+              width={200}
+              height={300}
+            /> */}
+          </div>
+          <h2>YouTube Favorites</h2>
+          <p></p>
+          <span className={styles.link}>View Live Project →</span>
+        </a>
       </div>
       <div className={styles.backLink}>
         <Link href="/">← Back to Home</Link>

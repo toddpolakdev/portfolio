@@ -3,7 +3,6 @@
 import Header from "@/components/Header/Header";
 import Main from "@/components/Main/Main";
 import Hero_M from "@/components/Hero_M/Hero_M";
-import Hero from "@/components/Hero/Hero";
 import About_M from "@/components/About_M/About_M";
 import Skills from "@/components/Skills/Skills";
 import Experience from "@/components/Experience/Experience";
@@ -16,7 +15,9 @@ import type { Section } from "@/types/types";
 import { GET_SECTIONS } from "@/queries/getSections";
 
 export default function Home() {
-  const { data, loading, error } = useQuery(GET_SECTIONS);
+  const { data, loading, error } = useQuery(GET_SECTIONS, {
+    fetchPolicy: "cache-first",
+  });
 
   if (error) {
     console.log("error: ", error);
