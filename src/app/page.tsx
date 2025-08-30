@@ -3,6 +3,7 @@
 import Header from "@/components/Header/Header";
 import Main from "@/components/Main/Main";
 import Hero_M from "@/components/Hero_M/Hero_M";
+import Hero from "@/components/Hero/Hero";
 import About_M from "@/components/About_M/About_M";
 import Skills from "@/components/Skills/Skills";
 import Experience from "@/components/Experience/Experience";

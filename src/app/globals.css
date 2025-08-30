@@ -59,6 +59,7 @@ body {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
+  z-index: -2;
 }
 
 .floatingElement {
@@ -118,25 +119,6 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.7;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
   }
 }
 
@@ -212,25 +194,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* Enhanced scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0f0f23;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #00d4ff, #ff6b9d);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #ff6b9d, #00d4ff);
-}
-
-/* Selection styling */
 ::selection {
   background: rgba(0, 212, 255, 0.3);
   color: white;
@@ -241,13 +204,11 @@ body {
   color: white;
 }
 
-/* Focus styles for accessibility */
 *:focus {
   outline: 2px solid #00d4ff;
   outline-offset: 2px;
 }
 
-/* Smooth transitions for all interactive elements */
 a,
 button,
 input,
@@ -255,7 +216,6 @@ textarea {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Loading animation */
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -265,7 +225,6 @@ textarea {
   }
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .section {
     padding: 3rem 0;
@@ -281,7 +240,7 @@ textarea {
   }
 
   .floatingElement {
-    display: none; /* Hide floating elements on mobile for performance */
+    display: none;
   }
 }
 
@@ -293,28 +252,5 @@ textarea {
   .btn {
     padding: 10px 25px;
     font-size: 0.9rem;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: linear-gradient(135deg, #0a0a1a 0%, #141428 50%, #1a1a3a 100%);
-  }
-}
-
-/* Reduced motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .floatingElement {
-    animation: none;
   }
 }

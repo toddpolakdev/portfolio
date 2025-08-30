@@ -4,6 +4,7 @@ import "./globals.css";
 import ApolloWrapper from "@/lib/ApolloWrapper";
 import FadeInObserver from "@/components/FadeInObserver";
 import ScrollAnimations from "@/components/ScrollAnimations/ScrollAnimations";
+import { Providers } from "@/components/Providers/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +32,11 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         <ApolloWrapper>
-          <FadeInObserver />
-          <ScrollAnimations />
-          {children}
+          <Providers>
+            <FadeInObserver />
+            <ScrollAnimations />
+            {children}
+          </Providers>
         </ApolloWrapper>
       </body>
     </html>

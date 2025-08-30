@@ -16,8 +16,9 @@ export default function ProjectsPage() {
             <Image
               src="/images/react-calculator-app.png"
               alt="React Calculator Preview"
-              fill
               className={styles.image}
+              width={200}
+              height={300}
             />
           </div>
           <h2>React Calculator</h2>
