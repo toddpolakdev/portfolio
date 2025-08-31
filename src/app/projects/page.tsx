@@ -32,13 +32,13 @@ export default function ProjectsPage() {
           rel="noopener noreferrer"
           className={styles.card}>
           <div className={styles.thumbWrapper}>
-            {/* <Image
-              src=""
-              alt=""
+            <Image
+              src="/images/youtube-favorites-app.png"
+              alt="Youtube Favorites Preview"
               className={styles.image}
-              width={200}
+              width={400}
               height={300}
-            /> */}
+            />
           </div>
           <h2>YouTube Favorites</h2>
           <p></p>
