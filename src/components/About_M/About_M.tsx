@@ -110,7 +110,7 @@ const About: React.FC<Props> = ({ title, content }) => {
                   position: "relative",
                 }}>
                 <Image
-                  src="/images/about.svg"
+                  src="/images/programming.jpg"
                   alt=""
                   width={300}
                   height={300}
