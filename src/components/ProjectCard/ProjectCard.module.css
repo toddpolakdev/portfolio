@@ -1,0 +1,92 @@
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.card {
+  background: #f9f9f9;
+  padding: 1.5rem 1.5rem 2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.thumbWrapper {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 100%;
+}
+
+.card h2 {
+  margin: 0.5rem 0;
+}
+
+.card p {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.githubLink {
+  color: #333;
+  transition: color 0.2s;
+}
+
+.githubLink:hover {
+  color: #000;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  font-weight: bold;
+  color: #0070f3;
+}
+
+.backLink {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.backLink a {
+  color: #0070f3;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.backLink a:hover {
+  text-decoration: underline;
+}
