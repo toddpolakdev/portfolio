@@ -27,7 +27,7 @@ export default function ProjectsPage() {
         </a>
 
         <a
-          href="https://youtube-favorites-tawny.vercel.app/"
+          href="https://youtube-favorites-git-main-todd-polaks-projects.vercel.app//"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.card}>
