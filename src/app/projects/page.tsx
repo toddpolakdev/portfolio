@@ -17,7 +17,7 @@ export default function ProjectsPage() {
         <ProjectCard
           title="Flipbook Image Viewer"
           description=""
-          image="/images/"
+          image="/images/flipbook-app.png"
           liveUrl="https://flipbook-app-web.vercel.app/"
           githubUrl="https://github.com/toddpolakdev/flipbook-app"
         />
