@@ -15,6 +15,13 @@ export default function ProjectsPage() {
           githubUrl="https://github.com/toddpolakdev/react-calculator"
         />
         <ProjectCard
+          title="Flipbook Image Viewer"
+          description=""
+          image="/images/"
+          liveUrl="https://flipbook-app-web.vercel.app/"
+          githubUrl="https://github.com/toddpolakdev/flipbook-app"
+        />
+        <ProjectCard
           title="YouTube Favorites"
           description="Save and organize your favorite YouTube videos."
           image="/images/youtube-favorites-app.png"

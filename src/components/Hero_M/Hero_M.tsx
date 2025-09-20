@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
 import styles from "./Hero_M.module.css";
 import Button from "../Button/Button";
-import { Parallax } from "react-scroll-parallax";
+// import { Parallax } from "react-scroll-parallax";
 
 type HeroProps = {
   title: string;
@@ -59,7 +59,9 @@ const FloatingShape: React.FC<{ index: number }> = ({ index }) => {
       position: "absolute" as const,
       left: `${10 + Math.random() * 80}%`,
       top: `${10 + Math.random() * 80}%`,
-      opacity: 0.1,
+      opacity: 0.3,
+      // border: ".1px solid #000",
+      // background: "#1f0505ff",
       background: "rgba(0, 212, 255, 0.3)",
     };
 
@@ -163,7 +165,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
           overflow: "hidden",
           pointerEvents: "none",
         }}>
-        {Array.from({ length: 50 }, (_, i) => (
+        {Array.from({ length: 10 }, (_, i) => (
           <Particle key={i} index={i} />
         ))}
       </div>
@@ -176,12 +178,12 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
           pointerEvents: "none",
           y: y1,
         }}>
-        {Array.from({ length: 8 }, (_, i) => (
+        {Array.from({ length: 100 }, (_, i) => (
           <FloatingShape key={i} index={i} />
         ))}
       </motion.div>
 
-      <Parallax speed={-20}>
+      {/* <Parallax speed={-20}>
         <motion.div className="floatingElements" style={{ y: y2 }}>
           <motion.div
             className="floatingElement"
@@ -226,7 +228,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
             }}
           />
         </motion.div>
-      </Parallax>
+      </Parallax> */}
 
       <div className="container">
         <motion.div
