@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
 import styles from "./Hero_M.module.css";
 import Button from "../Button/Button";
-// import { Parallax } from "react-scroll-parallax";
 
 type HeroProps = {
   title: string;
@@ -156,8 +155,22 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
     },
   };
 
+  const bgY = useTransform(scrollY, [0, 300], [0, -100]);
+
   return (
     <motion.section className={styles.hero} style={{ opacity }}>
+      <motion.div
+        style={{
+          position: "absolute",
+          inset: 0,
+          // backgroundImage: "linear-gradient(135deg, #1f2937 0%, #111827 100%)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          y: bgY,
+          zIndex: -1,
+        }}
+      />
+
       <div
         style={{
           position: "absolute",
@@ -165,7 +178,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
           overflow: "hidden",
           pointerEvents: "none",
         }}>
-        {Array.from({ length: 10 }, (_, i) => (
+        {Array.from({ length: 40 }, (_, i) => (
           <Particle key={i} index={i} />
         ))}
       </div>
@@ -182,53 +195,6 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
           <FloatingShape key={i} index={i} />
         ))}
       </motion.div>
-
-      {/* <Parallax speed={-20}>
-        <motion.div className="floatingElements" style={{ y: y2 }}>
-          <motion.div
-            className="floatingElement"
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 180, 360],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="floatingElement"
-            animate={{
-              scale: [1, 0.8, 1.1, 1],
-              y: [-10, 10, -5, 0],
-              opacity: [0.2, 0.5, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2,
-            }}
-          />
-          <motion.div
-            className="floatingElement"
-            animate={{
-              scale: [1, 1.3, 0.9, 1],
-              x: [-5, 5, -3, 0],
-              rotate: [0, -90, 90, 0],
-              opacity: [0.4, 0.7, 0.5, 0.4],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 4,
-            }}
-          />
-        </motion.div>
-      </Parallax> */}
 
       <div className="container">
         <motion.div
@@ -308,7 +274,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, description }) => {
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}>
-              <Button href="/projects" variant="primary">
+              <Button href="#projects" variant="primary">
                 View My Work
               </Button>
             </motion.div>
