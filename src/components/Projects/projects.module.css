@@ -9,18 +9,3 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   margin-top: 2rem;
 }
-
-.backLink {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.backLink a {
-  color: #0070f3;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.backLink a:hover {
-  text-decoration: underline;
-}

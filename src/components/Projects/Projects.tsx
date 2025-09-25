@@ -3,7 +3,7 @@ import ProjectCard from "../../components/ProjectCard/ProjectCard";
 
 export default function Projects() {
   return (
-    <section id="projects">
+    <section id="projects" className="section">
       <div className={styles.container}>
         <h1>Projects</h1>
         <div className={styles.grid}>
