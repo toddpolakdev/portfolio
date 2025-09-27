@@ -17,15 +17,14 @@ import { GET_SECTIONS } from "@/queries/getSections";
 
 export default function HomeContent() {
   const { data, loading, error } = useQuery(GET_SECTIONS, {
-    fetchPolicy: "cache-first",
+    fetchPolicy: "cache-and-network",
+    nextFetchPolicy: "cache-first",
   });
 
   if (error) {
     console.log("error: ", error);
     return null;
   }
-
-  if (loading) return <Loader />;
 
   const heroSection = data?.sections.find((s: Section) => s.id === "hero");
   const aboutSection = data?.sections.find((s: Section) => s.id === "about");
@@ -50,6 +49,7 @@ export default function HomeContent() {
         <Contact />
         <Footer />
       </Main>
+      {loading && <Loader />}
     </>
   );
 }
