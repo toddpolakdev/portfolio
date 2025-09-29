@@ -10,7 +10,7 @@ export default function Projects() {
           <ProjectCard
             title="Todo List & React Calculator"
             description=""
-            image="/images/react-calculator-app.png"
+            image="/images/desktop-app.png"
             liveUrl="https://refresher-red.vercel.app/"
             githubUrl="https://github.com/toddpolakdev/refresher"
           />
