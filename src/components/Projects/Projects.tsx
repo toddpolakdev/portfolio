@@ -8,8 +8,8 @@ export default function Projects() {
         <h1>Projects</h1>
         <div className={styles.grid}>
           <ProjectCard
-            title="Todo & React Calculator"
-            description="A scientific calculator built with React."
+            title="Todo List & React Calculator"
+            description=""
             image="/images/react-calculator-app.png"
             liveUrl="https://refresher-red.vercel.app/"
             githubUrl="https://github.com/toddpolakdev/refresher"
