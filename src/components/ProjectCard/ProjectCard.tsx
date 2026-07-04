@@ -23,7 +23,8 @@ export default function ProjectCard({
         href={liveUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={styles.thumbWrapper}>
+        className={styles.thumbWrapper}
+      >
         <Image
           src={image}
           alt={`${title} Preview`}
@@ -41,12 +42,13 @@ export default function ProjectCard({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.githubLink}>
+              className={styles.githubLink}
+            >
               <FaGithub size={22} />
             </a>
           )}
           <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-            <span className={styles.link}>View Demo</span>
+            <span className={styles.link}>View</span>
           </a>
         </div>
       </div>

@@ -8,9 +8,9 @@ export default function Projects() {
         <h1>Projects</h1>
         <div className={styles.grid}>
           <ProjectCard
-            title="Todo List & React Calculator"
+            title="Productivity Desktop"
             description=""
-            image="/images/desktop-app.png"
+            image="/images/prod-dt.jpg"
             liveUrl="https://refresher-red.vercel.app/"
             githubUrl="https://github.com/toddpolakdev/refresher"
           />
