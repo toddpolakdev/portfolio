@@ -49,7 +49,9 @@ const Footer: React.FC = () => {
         </a>
       </div>
       <div className={styles.divider}></div>
-      <p className={styles.copy}>© {new Date().getFullYear()} Todd Polak</p>
+      <p className={styles.copy} suppressHydrationWarning>
+        © {new Date().getFullYear()} Todd Polak
+      </p>
     </footer>
   );
 };
