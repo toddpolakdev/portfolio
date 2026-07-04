@@ -25,7 +25,7 @@ const FloatingShape: React.FC<{ index: number }> = ({ index }) => {
     position: "absolute",
     left: `${left}%`,
     top: `${top}%`,
-    opacity: 0.3,
+    opacity: 0.6,
   };
 
   let style: React.CSSProperties;
@@ -34,14 +34,14 @@ const FloatingShape: React.FC<{ index: number }> = ({ index }) => {
       style = {
         ...baseStyle,
         borderRadius: "50%",
-        background: "rgba(0, 212, 255, 0.3)",
+        background: "rgba(0, 212, 255, 0.6)",
       };
       break;
     case "triangle":
       style = {
         ...baseStyle,
         background: "transparent",
-        border: "2px solid rgba(0, 212, 255, 0.3)",
+        border: "2px solid rgba(0, 212, 255, 0.6)",
         clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
       };
       break;
@@ -49,7 +49,7 @@ const FloatingShape: React.FC<{ index: number }> = ({ index }) => {
       style = {
         ...baseStyle,
         background: "transparent",
-        border: "2px solid rgba(255, 107, 157, 0.3)",
+        border: "2px solid rgba(255, 107, 157, 0.6)",
         transform: "rotate(45deg)",
       };
       break;

@@ -68,7 +68,8 @@ body {
   border-radius: 50%;
   animation: float 6s ease-in-out infinite;
   backdrop-filter: blur(2px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  border: 1px solid #8a0707;
 }
 
 .floatingElement:nth-child(1) {
