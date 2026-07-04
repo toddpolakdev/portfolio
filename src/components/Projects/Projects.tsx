@@ -25,7 +25,7 @@ export default function Projects() {
             title="YouTube Favorites"
             description="Save and organize your favorite YouTube videos."
             image="/images/youtube-favorites-app.png"
-            liveUrl="https://youtube-favorites-git-main-todd-polaks-projects.vercel.app/"
+            liveUrl="https://youtube-favorites-tawny.vercel.app/"
             githubUrl="https://github.com/toddpolakdev/youtube-favorites"
           />
         </div>
