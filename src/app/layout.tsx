@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeScript from "@/components/Theme/ThemeScript";
+import { SITE_URL } from "@/lib/site";
 
 const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
@@ -9,8 +10,6 @@ const jetbrains = JetBrains_Mono({
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toddpolak.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

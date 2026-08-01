@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getProjects } from "@/lib/content";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toddpolak.dev";
+import { SITE_URL, siteUrl } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getProjects();
@@ -14,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     ...projects.map((project) => ({
-      url: `${SITE_URL}/work/${project.slug}`,
+      url: siteUrl(`work/${project.slug}`),
       lastModified: project.updatedAt ? new Date(project.updatedAt) : new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
