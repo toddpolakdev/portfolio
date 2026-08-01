@@ -1,0 +1,77 @@
+.section {
+  position: relative;
+  padding-block: clamp(3.5rem, 9vw, 7rem);
+  scroll-margin-top: 5rem;
+}
+
+.section + .section {
+  border-top: 1px solid var(--border);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+}
+
+/* The `$ command` line that titles every section. */
+.prompt {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55ch;
+  font-size: var(--fs-sm);
+  color: var(--dim);
+  min-width: 0;
+}
+
+.sigil {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.command {
+  color: var(--fg-strong);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.flag {
+  color: var(--amber);
+}
+
+.caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1em;
+  translate: 0 0.12em;
+  background: var(--accent);
+  animation: blink 1.15s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.title {
+  font-size: var(--fs-xl);
+  margin-top: 0.35rem;
+  width: 100%;
+}
+
+.count {
+  font-size: var(--fs-xs);
+  color: var(--dimmer);
+  margin-left: auto;
+  white-space: nowrap;
+  padding-top: 0.2rem;
+}
+
+@media (max-width: 640px) {
+  .count {
+    margin-left: 0;
+  }
+}

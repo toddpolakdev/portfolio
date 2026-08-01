@@ -1,51 +1,94 @@
-.aboutGrid {
+.grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: start;
 }
 
-.aboutImage {
-  width: 300px;
-  height: 300px;
-  background: #1a1a2e;
-  margin: 0 auto;
-  position: relative;
-}
-
-.aboutImage :global(img) {
-  background: #f0f0f0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  -webkit-mask-image: radial-gradient(
-    circle,
-    rgb(94, 78, 78) 10%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: cover;
-
-  mask-image: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 1) 10%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: cover;
-}
-
-.aboutText {
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-@media (max-width: 768px) {
-  .aboutGrid {
-    grid-template-columns: 1fr;
-    text-align: center;
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
   }
+}
+
+.prose p {
+  color: var(--dim);
+  max-width: 68ch;
+  line-height: 1.85;
+}
+
+.prose p + p {
+  margin-top: 1.1rem;
+}
+
+/* Each paragraph is numbered like a file listing. */
+.para {
+  display: grid;
+  grid-template-columns: 3ch minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.num {
+  color: var(--dimmer);
+  font-size: var(--fs-xs);
+  padding-top: 0.35rem;
+  user-select: none;
+  text-align: right;
+}
+
+/* Side panel ------------------------------------------------------------- */
+.panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+  position: sticky;
+  top: 5.5rem;
+}
+
+@media (max-width: 860px) {
+  .panel {
+    position: static;
+  }
+}
+
+.panelHead {
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-hi);
+  font-size: var(--fs-xs);
+  color: var(--dimmer);
+}
+
+.panelBody {
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: var(--fs-sm);
+  min-width: 0;
+}
+
+.statKey {
+  color: var(--magenta);
+  flex-shrink: 0;
+}
+
+.statDots {
+  flex: 1;
+  border-bottom: 1px dotted var(--border-hi);
+  translate: 0 -0.25em;
+  min-width: 1ch;
+}
+
+.statVal {
+  color: var(--cyan);
+  text-align: right;
+  overflow-wrap: anywhere;
 }

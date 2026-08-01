@@ -1,0 +1,85 @@
+.page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+}
+
+.panel {
+  width: min(100%, 460px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-hi);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot:nth-child(1) {
+  background: var(--red);
+}
+.dot:nth-child(2) {
+  background: var(--amber);
+}
+.dot:nth-child(3) {
+  background: var(--green);
+}
+
+.barTitle {
+  margin-left: 0.5rem;
+  font-size: var(--fs-xs);
+  color: var(--dimmer);
+}
+
+.body {
+  padding: 1.2rem;
+  font-size: var(--fs-sm);
+  line-height: 1.9;
+}
+
+.sigil {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.row {
+  color: var(--fg-strong);
+}
+
+.err {
+  color: var(--red);
+}
+
+.code {
+  color: var(--amber);
+  margin-bottom: 1.4rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: transform 0.18s var(--ease);
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+}

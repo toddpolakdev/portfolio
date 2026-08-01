@@ -9,15 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.13.9",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.23.12",
-    "graphql": "^16.11.0",
     "next": "15.4.10",
+    "next-auth": "^5.0.0-beta.32",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
-    "react-scroll-parallax": "^3.4.5"
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

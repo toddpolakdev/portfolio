@@ -1,64 +1,110 @@
-.experienceTimeline {
+.log {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
   position: relative;
-  padding-left: 2rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0 1.1rem;
+  padding-bottom: 2.25rem;
 }
 
-.experienceTimeline::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 3px;
-  background: linear-gradient(to bottom, #00d4ff, #ff6b9d);
+.entry:last-child {
+  padding-bottom: 0;
 }
 
-.experienceItem {
-  position: relative;
-  margin-bottom: 3rem;
-  padding-left: 2rem;
+/* Commit graph rail ------------------------------------------------------ */
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.experienceItem::before {
-  content: "";
-  position: absolute;
-  left: -1.5rem;
-  top: 0;
-  width: 12px;
-  height: 12px;
+.node {
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
-  background: #00d4ff;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+  margin-top: 0.45rem;
+  flex-shrink: 0;
 }
 
-.experienceHeader {
-  margin-bottom: 1rem;
+.entry:first-child .node {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
-.jobTitle {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #e0e0e0;
+.stem {
+  flex: 1;
+  width: 1px;
+  background: var(--border);
+  min-height: 1rem;
+}
+
+.entry:last-child .stem {
+  display: none;
+}
+
+/* Commit body ------------------------------------------------------------ */
+.hash {
+  color: var(--amber);
+  font-size: var(--fs-xs);
+  margin-bottom: 0.15rem;
+}
+
+.hash span {
+  color: var(--dimmer);
+}
+
+.title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--fg-strong);
+  line-height: 1.35;
+}
+
+.at {
+  color: var(--dimmer);
+  font-weight: 400;
 }
 
 .company {
-  font-size: 1.1rem;
-  color: #00d4ff;
-  font-weight: 600;
+  color: var(--cyan);
 }
 
 .duration {
-  color: #b0b0b0;
-  font-style: italic;
+  font-size: var(--fs-xs);
+  color: var(--dim);
+  margin-bottom: 0.85rem;
 }
 
-.jobDescription {
-  margin-top: 1rem;
+.bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.jobDescription ul {
-  margin-left: 1rem;
+.bullet {
+  display: grid;
+  grid-template-columns: 2ch minmax(0, 1fr);
+  gap: 0.5rem;
+  font-size: var(--fs-sm);
+  color: var(--dim);
+  line-height: 1.7;
 }
 
-.jobDescription li {
-  margin-bottom: 0.5rem;
+.plus {
+  color: var(--green);
+  user-select: none;
+}
+
+@media (max-width: 560px) {
+  .entry {
+    gap: 0 0.75rem;
+  }
 }

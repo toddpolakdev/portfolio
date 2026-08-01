@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — toddpolak
 
-## Getting Started
+Next.js 15 portfolio with a terminal/dev-native design, all copy served from
+MongoDB through a GraphQL API, plus an authenticated admin portal for editing
+it.
 
-First, run the development server:
+- **Public site** — server-rendered and statically generated. No client-side
+  data fetching, no loading spinner, full HTML for crawlers.
+- **Admin portal** at `/admin` — edit section copy, manage projects, upload
+  screenshots to Cloudinary, and read contact-form messages.
+- **Backend** — the separate [`my-portfolio-backend`](../my-portfolio-backend)
+  repo, an Apollo Server on Vercel backed by MongoDB.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Architecture
+
+```
+Browser ──► Next.js (Server Components)  ──► GraphQL API ──► MongoDB
+                    │                             ▲
+                    └── server actions ───────────┘
+                        (Bearer ADMIN_API_TOKEN)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Public pages read through cache-tagged `fetch` calls. Admin writes go through
+server actions that attach `ADMIN_API_TOKEN` — that token never reaches the
+browser — and then revalidate the affected tags so the live site updates
+without a deploy.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Auth is two independent layers:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Who you are** — Auth.js v5 with GitHub OAuth, restricted to an allowlist.
+2. **What the API trusts** — a shared bearer token between the Next server and
+   the GraphQL API. Every admin resolver calls `requireAdmin`, and every server
+   action re-checks the session before it runs.
 
-## Learn More
+## Setup
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Environment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copy the template and fill it in:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+cp .env.example .env.local
+```
 
-## Deploy on Vercel
+| Variable | What it is |
+| --- | --- |
+| `GRAPHQL_ENDPOINT` | The GraphQL API. `http://localhost:4000/api/graphql` in dev. |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL. Used for metadata and the sitemap. |
+| `ADMIN_API_TOKEN` | Shared secret. **Must match the same variable in the backend.** |
+| `AUTH_SECRET` | Session signing key. `openssl rand -hex 32`. |
+| `AUTH_GITHUB_ID` / `AUTH_GITHUB_SECRET` | From the GitHub OAuth app below. |
+| `ADMIN_EMAILS` | Comma-separated emails allowed into `/admin`. |
+| `ADMIN_GITHUB_LOGINS` | Comma-separated GitHub usernames, for private-email accounts. |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If both allowlists are empty, **nobody** can sign in — that is deliberate.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2. GitHub OAuth app
+
+Create one at <https://github.com/settings/developers> → *New OAuth App*:
+
+- **Homepage URL**: `http://localhost:3000`
+- **Authorization callback URL**: `http://localhost:3000/api/auth/callback/github`
+
+Copy the client ID and generated secret into `.env.local`. For production,
+create a second OAuth app pointing at your real domain.
+
+### 3. Cloudinary (image uploads)
+
+Uploads are signed server-side, so the backend needs these set:
+
+```
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
+
+Without them the admin still works; only the Upload button is disabled, and it
+says so. Uploads are confined to the `portfolio/` folder prefix.
+
+### 4. Run it
+
+```bash
+# terminal 1 — API
+cd ../my-portfolio-backend && npm run dev
+
+# terminal 2 — site
+npm run dev
+```
+
+The site is at <http://localhost:3000>, the admin at
+<http://localhost:3000/admin>.
+
+## Content model
+
+Two MongoDB collections drive everything:
+
+- **`section`** — one document per page section, keyed by `id`
+  (`hero`, `about`, `skills`, `experience`, `education`, `contact`). Each has a
+  `type` that decides which editor the admin shows and which component renders
+  it.
+- **`project`** — one per portfolio project, with `status` (`draft` /
+  `published`), `featured`, and `order`. Drafts are invisible to the public
+  API, not just hidden in the UI.
+
+To migrate the projects that were previously hardcoded:
+
+```bash
+cd ../my-portfolio-backend && npm run seed:projects
+```
+
+It upserts by slug and skips anything that already exists, so it is safe to
+re-run.
+
+## Design system
+
+Tokens live in `src/app/globals.css`. Dark is the default; light is a pure
+token swap under `:root[data-theme="light"]`, so no component knows which theme
+is active. Adding a colour means editing one file.
+
+Everything else is CSS Modules colocated with its component.
+
+## Notable behaviour
+
+- **⌘K / Ctrl+K** opens a command palette for jumping to sections, opening
+  projects, and toggling the theme.
+- **Scroll reveals** use one shared `IntersectionObserver`, and are disabled
+  under `prefers-reduced-motion`. A `<noscript>` rule makes sure content is
+  never invisible without JS.
+- **The contact form** is a server action with a honeypot field and server-side
+  validation; it does not trust the client.

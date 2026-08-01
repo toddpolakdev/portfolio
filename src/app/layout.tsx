@@ -1,44 +1,72 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import ApolloWrapper from "@/lib/ApolloWrapper";
-import FadeInObserver from "@/components/FadeInObserver";
-import ScrollAnimations from "@/components/ScrollAnimations/ScrollAnimations";
-import { Providers } from "@/components/Providers/Providers";
+import ThemeScript from "@/components/Theme/ThemeScript";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toddpolak.dev";
 
 export const metadata: Metadata = {
-  title: "Todd Polak - Portfolio",
-  description: "Portfolio website for Todd Polak",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Todd Polak — Web Developer",
+    template: "%s · Todd Polak",
+  },
+  description:
+    "Web developer specializing in scalable web applications, serverless architectures, and CMS integrations. React, Next.js, GraphQL, MongoDB.",
+  keywords: [
+    "Todd Polak",
+    "web developer",
+    "React",
+    "Next.js",
+    "GraphQL",
+    "TypeScript",
+    "full stack",
+  ],
+  authors: [{ name: "Todd Polak" }],
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    title: "Todd Polak — Web Developer",
+    description:
+      "Web developer specializing in scalable web applications, serverless architectures, and CMS integrations.",
+    siteName: "Todd Polak",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Todd Polak — Web Developer",
+    description:
+      "Web developer specializing in scalable web applications and serverless architectures.",
+  },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0b0f10" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f2ed" },
+  ],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>
-        <ApolloWrapper>
-          <Providers>
-            <FadeInObserver />
-            <ScrollAnimations />
-            {children}
-          </Providers>
-        </ApolloWrapper>
-      </body>
+    <html lang="en" className={jetbrains.variable} suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+        {/* Scroll reveals depend on JS; without it, show everything. */}
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

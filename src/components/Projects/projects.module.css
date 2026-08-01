@@ -1,11 +1,226 @@
-.container {
-  padding: 2rem;
-  text-align: center;
-}
-
 .grid {
   display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+  gap: 1.1rem;
+}
+
+/* The first featured project spans two columns on wide screens. */
+.wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 760px) {
+  .wide {
+    grid-column: span 1;
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+
+.card:hover {
+  border-color: var(--accent-line);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+/* Window chrome ---------------------------------------------------------- */
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-hi);
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--border-hi);
+}
+
+.card:hover .dot:nth-child(1) {
+  background: var(--red);
+}
+.card:hover .dot:nth-child(2) {
+  background: var(--amber);
+}
+.card:hover .dot:nth-child(3) {
+  background: var(--green);
+}
+
+.dot {
+  transition: background 0.25s var(--ease);
+}
+
+.chromeTitle {
+  margin-left: 0.45rem;
+  font-size: var(--fs-xs);
+  color: var(--dimmer);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Preview ---------------------------------------------------------------- */
+.shot {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-alt);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.wide .shot {
+  aspect-ratio: 21 / 9;
+}
+
+.shot img {
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+
+.card:hover .shot img {
+  transform: scale(1.035);
+}
+
+/* Fallback when a project has no screenshot yet. */
+.noShot {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--dimmer);
+  font-size: var(--fs-xs);
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Body ------------------------------------------------------------------- */
+.body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--fg-strong);
+  line-height: 1.3;
+}
+
+.year {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  color: var(--dimmer);
+  white-space: nowrap;
+}
+
+.tagline {
+  font-size: var(--fs-sm);
+  color: var(--dim);
+  line-height: 1.7;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 0.2rem;
+}
+
+.tag {
+  font-size: var(--fs-xs);
+  color: var(--dim);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1rem 0.45rem;
+}
+
+/* Actions ---------------------------------------------------------------- */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg-alt);
+  flex-shrink: 0;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--fs-xs);
+  color: var(--dim);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.32rem 0.65rem;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease),
+    background 0.18s var(--ease);
+}
+
+.action:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+.detail {
+  margin-left: auto;
+  color: var(--dimmer);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--fs-xs);
+  transition: color 0.18s var(--ease);
+}
+
+.detail:hover {
+  color: var(--accent);
+}
+
+/* Empty state ------------------------------------------------------------ */
+.empty {
+  border: 1px dashed var(--border-hi);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--dim);
+  font-size: var(--fs-sm);
 }

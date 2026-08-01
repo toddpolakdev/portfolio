@@ -1,69 +1,272 @@
 .hero {
-  min-height: 90vh;
+  position: relative;
+  min-height: 100svh;
   display: flex;
   align-items: center;
-  color: white;
-  text-align: center;
-  position: relative;
+  padding-block: 7rem 4rem;
   overflow: hidden;
 }
 
-.heroContent {
-  z-index: 2;
-  max-width: 800px;
-  margin: 0 auto;
-  animation: fadeInUp 1s ease;
+/* Faint grid, fading out toward the bottom of the viewport. */
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.4;
+  mask-image: radial-gradient(ellipse 70% 60% at 30% 40%, #000 10%, transparent 75%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at 30% 40%,
+    #000 10%,
+    transparent 75%
+  );
 }
 
-.hero h1 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  background: linear-gradient(45deg, #00d4ff, #ff6b9d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
 }
 
-.hero .subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-}
-
-.hero .description {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  opacity: 0.8;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.ctaButtons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
   }
-  to {
-    opacity: 1;
+}
+
+/* Left column ------------------------------------------------------------ */
+.line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6ch;
+  font-size: var(--fs-sm);
+  color: var(--dim);
+  margin-bottom: 1rem;
+}
+
+.sigil {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.name {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  color: var(--fg-strong);
+  margin-bottom: 0.6rem;
+  overflow-wrap: break-word;
+}
+
+.name em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.role {
+  font-size: clamp(0.95rem, 2.4vw, 1.35rem);
+  color: var(--cyan);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
+}
+
+.blurb {
+  max-width: 56ch;
+  color: var(--dim);
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 2.2rem;
+}
+
+.cta,
+.ctaGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s var(--ease), background 0.18s var(--ease),
+    border-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.cta {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--accent) 85%, white);
+}
+
+.ctaGhost {
+  border-color: var(--border-hi);
+  color: var(--fg);
+}
+
+.ctaGhost:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.socials {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--dim);
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease),
+    transform 0.18s var(--ease);
+}
+
+.social:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  transform: translateY(-2px);
+}
+
+/* Right column: the terminal window ------------------------------------- */
+.window {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.windowBar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-hi);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot:nth-child(1) {
+  background: var(--red);
+}
+.dot:nth-child(2) {
+  background: var(--amber);
+}
+.dot:nth-child(3) {
+  background: var(--green);
+}
+
+.windowTitle {
+  margin-left: 0.5rem;
+  font-size: var(--fs-xs);
+  color: var(--dimmer);
+}
+
+.windowBody {
+  padding: 1rem 1.1rem 1.2rem;
+  font-size: var(--fs-sm);
+  line-height: 1.85;
+  min-height: 16.5rem;
+  overflow-x: auto;
+}
+
+.row {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.rowCmd {
+  color: var(--fg-strong);
+}
+
+.rowOut {
+  color: var(--dim);
+}
+
+.rowKey {
+  color: var(--magenta);
+}
+
+.rowVal {
+  color: var(--cyan);
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1em;
+  translate: 0 0.14em;
+  background: var(--accent);
+  animation: blink 1.15s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Scroll hint ------------------------------------------------------------ */
+.scrollHint {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 1;
+  font-size: var(--fs-xs);
+  color: var(--dimmer);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
     transform: translateY(0);
   }
+  50% {
+    transform: translateY(5px);
+  }
 }
 
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero .subtitle {
-    font-size: 1.2rem;
+@media (max-width: 900px) {
+  .scrollHint {
+    display: none;
   }
 }

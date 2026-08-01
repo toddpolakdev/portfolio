@@ -1,59 +1,33 @@
-import React from "react";
+import SocialLinks from "@/components/SocialLinks/SocialLinks";
 import styles from "./Footer.module.css";
-import Image from "next/image";
+import type { Section } from "@/types/types";
 
-const Footer: React.FC = () => {
+export default function Footer({ hero }: { hero?: Section }) {
+  const year = new Date().getFullYear();
+
   return (
     <footer className={styles.footer}>
-      <p className={styles.info}>This site was built using:</p>
-      <div className={styles.footerLogos}>
-        <a href="https://nextjs.org/" target="_blank">
-          <Image
-            src="/images/nextjs.png"
-            alt="Next.js"
-            width={160}
-            height={32.5}
-          />
-        </a>
-        <a href="https://react.dev/" target="_blank">
-          <Image
-            src="/images/react.png"
-            alt="React.js"
-            width={130}
-            height={120}
-          />
-        </a>
-        <a href="https://graphql.org/" target="_blank">
-          <Image
-            src="/images/graphQL.png"
-            alt="GraphQL"
-            width={160}
-            height={44}
-          />
-        </a>
-        <a href="https://www.mongodb.com/" target="_blank">
-          <Image
-            src="/images/mongoDB.png"
-            alt="MongoDB"
-            width={185}
-            height={92.5}
-          />
-        </a>
-        <a href="https://vercel.com/" target="_blank">
-          <Image
-            src="/images/vercel.png"
-            alt="Vercel"
-            width={160}
-            height={32}
-          />
-        </a>
+      <div className={`wrap ${styles.inner}`}>
+        <p className={styles.line}>
+          <span className={styles.sigil}>$</span> echo{" "}
+          <b>&quot;© {year} Todd Polak&quot;</b>
+        </p>
+
+        <SocialLinks
+          links={hero?.links}
+          className={styles.socials}
+          itemClassName={styles.social}
+        />
+
+        <p className={styles.built}>
+          <span>
+            Built with <a href="https://nextjs.org">Next.js</a>,{" "}
+            <a href="https://graphql.org">GraphQL</a>, and{" "}
+            <a href="https://www.mongodb.com">MongoDB</a>.
+          </span>
+          <span>All copy served from the database.</span>
+        </p>
       </div>
-      <div className={styles.divider}></div>
-      <p className={styles.copy} suppressHydrationWarning>
-        © {new Date().getFullYear()} Todd Polak
-      </p>
     </footer>
   );
-};
-
-export default Footer;
+}

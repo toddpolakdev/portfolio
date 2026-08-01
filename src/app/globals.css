@@ -1,257 +1,246 @@
-html {
-  font-family: var(--font-geist-sans), sans-serif;
-  scroll-behavior: smooth;
+/* =========================================================================
+   Terminal design system
+   Dark is the default. Light is a token swap only — no component knows which
+   theme is active, so adding a color here is the only place it needs editing.
+   ========================================================================= */
+
+:root {
+  /* Surfaces */
+  --bg: #0b0f10;
+  --bg-alt: #0f1416;
+  --surface: #141b1e;
+  --surface-hi: #1a2428;
+  --border: #223035;
+  --border-hi: #31454b;
+
+  /* Text */
+  --fg: #d5e0e2;
+  --fg-strong: #f2f8f9;
+  --dim: #7b8d90;
+  --dimmer: #55686c;
+
+  /* Terminal palette */
+  --green: #4cd98a;
+  --cyan: #56cfdd;
+  --amber: #e8b75a;
+  --magenta: #cf8ac9;
+  --red: #f07178;
+  --blue: #6ba9f5;
+
+  --accent: var(--green);
+  --accent-soft: rgba(76, 217, 138, 0.12);
+  --accent-line: rgba(76, 217, 138, 0.35);
+
+  /* Type */
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+  --fs-xs: 0.72rem;
+  --fs-sm: 0.82rem;
+  --fs-base: 0.94rem;
+  --fs-lg: 1.1rem;
+  --fs-xl: 1.6rem;
+  --fs-2xl: clamp(2rem, 6vw, 3.6rem);
+  --fs-3xl: clamp(2.6rem, 10vw, 6rem);
+
+  /* Space + shape */
+  --gutter: clamp(1.1rem, 4vw, 3rem);
+  --maxw: 1180px;
+  --radius: 6px;
+  --radius-lg: 10px;
+
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    0 12px 32px rgba(0, 0, 0, 0.45);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  color-scheme: dark;
 }
 
-* {
+:root[data-theme="light"] {
+  --bg: #f4f2ed;
+  --bg-alt: #eceae4;
+  --surface: #ffffff;
+  --surface-hi: #f7f5f0;
+  --border: #dcd8ce;
+  --border-hi: #c2bcae;
+
+  --fg: #2f3538;
+  --fg-strong: #14181a;
+  --dim: #6a7276;
+  --dimmer: #8c9498;
+
+  --green: #14804a;
+  --cyan: #0f7d8c;
+  --amber: #9a6b0f;
+  --magenta: #96348c;
+  --red: #c0353c;
+  --blue: #1f5fbd;
+
+  --accent: var(--green);
+  --accent-soft: rgba(20, 128, 74, 0.1);
+  --accent-line: rgba(20, 128, 74, 0.3);
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 10px 28px rgba(0, 0, 0, 0.08);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-mono);
+  scroll-behavior: smooth;
+  /* Sections anchor below the fixed top bar. */
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  line-height: 1.6;
-  color: #e0e0e0;
-  /* background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%); */
+  background: var(--bg);
+  color: var(--fg);
+  font-size: var(--fs-base);
+  line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.section {
-  padding: 5rem 0;
-  background: #1a1a2e;
-  position: relative;
-  overflow: hidden;
-}
-
-.sectionTitle {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
-  color: #e0e0e0;
-  position: relative;
-}
-
-.sectionTitle::after {
+/* Faint scanline + vignette. Sits above the background, below all content. */
+body::before {
   content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(45deg, #00d4ff, #ff6b9d);
-  border-radius: 2px;
-}
-
-.floatingElements {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
-  z-index: -2;
+  background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.014) 0 1px,
+      transparent 1px 3px
+    ),
+    radial-gradient(
+      ellipse 90% 70% at 50% 0%,
+      var(--accent-soft) 0%,
+      transparent 60%
+    );
 }
 
-.floatingElement {
-  position: absolute;
-  /* background: rgba(255, 255, 255, 0.1); */
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
-  backdrop-filter: blur(2px);
-  /* border: 1px solid rgba(255, 255, 255, 0.1); */
-  border: 1px solid #8a0707;
-}
-
-.floatingElement:nth-child(1) {
-  width: 80px;
-  height: 80px;
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.floatingElement:nth-child(2) {
-  width: 120px;
-  height: 120px;
-  top: 60%;
-  right: 10%;
-  animation-delay: 2s;
-}
-
-.floatingElement:nth-child(3) {
-  width: 60px;
-  height: 60px;
-  top: 80%;
-  left: 70%;
-  animation-delay: 4s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-10px) rotate(5deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(0deg);
-  }
-  75% {
-    transform: translateY(-10px) rotate(-5deg);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.btn {
-  padding: 12px 30px;
-  border: none;
-  border-radius: 50px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-
-.btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
+:root[data-theme="light"] body::before {
+  background: radial-gradient(
+    ellipse 90% 70% at 50% 0%,
+    var(--accent-soft) 0%,
+    transparent 60%
   );
-  transition: left 0.5s;
 }
 
-.btn:hover::before {
-  left: 100%;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.btnPrimary {
-  background: linear-gradient(45deg, #00d4ff, #ff6b9d);
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
 }
 
-.btnSecondary {
-  background: transparent;
-  color: #00d4ff;
-  border: 2px solid #00d4ff;
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.1);
-}
-
-.btnSecondary:hover {
-  background: rgba(0, 212, 255, 0.1);
-  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.btn:active {
-  transform: translateY(-1px);
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--fg-strong);
+  letter-spacing: -0.02em;
 }
 
 ::selection {
-  background: rgba(0, 212, 255, 0.3);
-  color: white;
+  background: var(--accent);
+  color: var(--bg);
 }
 
-::-moz-selection {
-  background: rgba(0, 212, 255, 0.3);
-  color: white;
-}
-
-*:focus {
-  outline: 2px solid #00d4ff;
+:focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+  border-radius: 3px;
 }
 
-a,
-button,
-input,
-textarea {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Scrollbar ------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hi);
+  border-radius: 10px;
+  border: 2px solid var(--bg-alt);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dimmer);
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+/* Shared layout helpers -------------------------------------------------- */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  position: relative;
+  z-index: 1;
+}
+
+/* Scroll-reveal. Elements start hidden and are revealed by an
+   IntersectionObserver adding .is-visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Never trap content in a hidden state when motion is off or JS has not run. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  to {
-    transform: rotate(360deg);
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
 
-@media (max-width: 768px) {
-  .section {
-    padding: 3rem 0;
-  }
-
-  .sectionTitle {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .container {
-    padding: 0 15px;
-  }
-
-  .floatingElement {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .sectionTitle {
-    font-size: 1.8rem;
-  }
-
-  .btn {
-    padding: 10px 25px;
-    font-size: 0.9rem;
-  }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

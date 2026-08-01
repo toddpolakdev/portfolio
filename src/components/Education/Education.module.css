@@ -1,59 +1,81 @@
-.educationTimeline {
-  position: relative;
-  padding-left: 2rem;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 1rem;
 }
 
-.educationTimeline::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 3px;
-  background: linear-gradient(to bottom, #00d4ff, #ff6b9d);
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 
-.educationItem {
-  position: relative;
-  margin-bottom: 3rem;
-  padding-left: 2rem;
+.card:hover {
+  border-color: var(--border-hi);
+  transform: translateY(-2px);
 }
 
-.educationItem::before {
-  content: "";
-  position: absolute;
-  left: -1.5rem;
-  top: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #00d4ff;
+.head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-hi);
+  font-size: var(--fs-xs);
+  color: var(--dimmer);
 }
 
-.educationHeader {
-  margin-bottom: 1rem;
+.icon {
+  color: var(--magenta);
+}
+
+.duration {
+  margin-left: auto;
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+.body {
+  padding: 1rem;
+  flex: 1;
 }
 
 .degree {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #e0e0e0;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--fg-strong);
+  line-height: 1.45;
+  margin-bottom: 0.3rem;
 }
 
 .institution {
-  font-size: 1.1rem;
-  color: #00d4ff;
-  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--cyan);
+  margin-bottom: 0.9rem;
 }
 
-.courseDescriptions {
-  margin-top: 1rem;
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
-.courseDescriptions ul {
-  margin-left: 1rem;
+.item {
+  display: grid;
+  grid-template-columns: 2ch minmax(0, 1fr);
+  gap: 0.45rem;
+  font-size: var(--fs-sm);
+  color: var(--dim);
+  line-height: 1.65;
 }
 
-.courseDescriptions li {
-  margin-bottom: 0.5rem;
+.marker {
+  color: var(--dimmer);
+  user-select: none;
 }
